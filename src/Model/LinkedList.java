@@ -1,39 +1,21 @@
 package Model;
 
-public class LinkedList {
+public class LinkedList<T> {
 
-    public Node head;
-    private int size;
+    public NodeGeneric<T> head;
+    private int size = 0;
 
-    public LinkedList(Node head, int size) {
-        this.head = head;
-        this.size = size;
-    }
-
-    public Node getHead() {
-        return head;
-    }
-
-    public void setHead(Node head) {
-        this.head = head;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    
-
-    public void appendToTail(int value){
+    public void appendToTail(T data){
         if (head == null){
-            head = new Node (value);
+            head = new NodeGeneric<>(data);
             size++;
             return;
         }
     }
-    
+
+    NodeGeneric<T> current = head;
+    while(current.getNext() != null){
+        current = current.getNext();
+    }
+
 }
