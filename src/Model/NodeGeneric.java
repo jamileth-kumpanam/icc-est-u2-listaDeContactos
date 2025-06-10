@@ -24,7 +24,7 @@ public class NodeGeneric<T> {
 
     public void setNext(NodeGeneric<T> next) {
         this.next = next;
-    } gatbdnbfdnbdndbnd
+    } 
 
     
 }
