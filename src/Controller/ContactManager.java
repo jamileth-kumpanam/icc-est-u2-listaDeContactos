@@ -4,7 +4,7 @@ import Model.NodeGeneric;
 import Model.Contact;
 
 public class ContactManager {
-    private NodeGeneric<Contact<?, ?>> head;
+    private NodeGeneric<Contact> head;
     private int size;
 
     public ContactManager() {
@@ -12,12 +12,12 @@ public class ContactManager {
         this.size = 0;
     }
 
-    public void addContact(Contact<?, ?> contact) {
-        NodeGeneric<Contact<?, ?>> newNode = new NodeGeneric<>(contact, null);
+    public void addContact(Contact contact) {
+        NodeGeneric<Contact> newNode = new NodeGeneric<>(contact, null);
         if (head == null) {
             head = newNode;
         } else {
-            NodeGeneric<Contact<?, ?>> current = head;
+            NodeGeneric<Contact> current = head;
             while (current.getNext() != null) {
                 current = current.getNext();
             }
@@ -26,10 +26,10 @@ public class ContactManager {
         size++;
     }
 
-    public Contact<?, ?> findContactByName(String name) {
-        NodeGeneric<Contact<?, ?>> current = head;
+    public Contact findContactByName(String name) {
+        NodeGeneric<Contact> current = head;
         while (current != null) {
-            if (current.getData().getName().equals(name)) {
+            if (current.getData().getName().equalsIgnoreCase(name)) {
                 return current.getData();
             }
             current = current.getNext();
@@ -38,11 +38,11 @@ public class ContactManager {
     }
 
     public void deleteContactByName(String name) {
-        NodeGeneric<Contact<?, ?>> current = head;
-        NodeGeneric<Contact<?, ?>> prev = null;
+        NodeGeneric<Contact> current = head;
+        NodeGeneric<Contact> prev = null;
 
         while (current != null) {
-            if (current.getData().getName().equals(name)) {
+            if (current.getData().getName().equalsIgnoreCase(name)) {
                 if (prev == null) {
                     head = current.getNext();
                 } else {
@@ -57,9 +57,9 @@ public class ContactManager {
     }
 
     public void printList() {
-        NodeGeneric<Contact<?, ?>> current = head;
+        NodeGeneric<Contact> current = head;
         while (current != null) {
-            System.out.println(current.getData().toString());
+            System.out.println(current.getData());
             current = current.getNext();
         }
     }
@@ -67,4 +67,9 @@ public class ContactManager {
     public int getSize() {
         return size;
     }
+
+    public NodeGeneric<Contact> getHead() {
+        return head;
+    }
 }
+
